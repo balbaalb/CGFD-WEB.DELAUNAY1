@@ -1,0 +1,1 @@
+start CMD /k nodemon app.js
