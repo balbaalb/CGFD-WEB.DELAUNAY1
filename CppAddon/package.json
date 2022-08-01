@@ -1,0 +1,11 @@
+{
+  "name": "EngineAddon",
+  "version": "0.0.0",
+  "private": true,
+  "gypfile": true,
+  "main": "./build/Release/EngineAddon",
+  "install": "node-gyp configure build",
+  "dependencies": {
+    "nan": "^2.16.0"
+  }
+}

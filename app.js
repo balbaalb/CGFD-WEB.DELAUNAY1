@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const exec = require('child_process').execFile;
 const _ = require("lodash");
 const fs = require("fs");
+const EngineAddon = require("./EngineAddon");
 
 let PointCoords = [];
 class Point {
@@ -49,6 +50,29 @@ app.post("/Engine",function(req,res){
 })
 
 app.get("/Engine", function(req,res){
+  res.render('Triangulation');
+})
+
+app.post("/EngineAddonCaller",function(req,res){
+  console.log("/test is called.");
+  let csv_data = "";
+  for(let i = 0; i < PointCoords.length; ++i)
+  {
+    if(i > 0){
+      csv_data = csv_data + ",";
+    }  
+    csv_data = csv_data + PointCoords[i];  
+  }
+  let ret = EngineAddon.AddonInterface(csv_data);
+  console.log("ret = " + ret);
+  res.render('Triangulation');
+})
+
+app.get("/EngineAddonCaller", function(req,res){
+  res.render('Triangulation');
+})
+
+app.get("/EngineAddon", function(req,res){
   res.render('Triangulation');
 })
 
